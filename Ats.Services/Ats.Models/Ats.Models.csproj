@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Constant\" />
     <Folder Include="Enums\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Ats.Core.Api\Ats.Shared\Ats.Shared.csproj" />
   </ItemGroup>
 
 </Project>

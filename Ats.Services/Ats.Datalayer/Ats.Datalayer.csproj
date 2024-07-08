@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Queries\" />
+    <EmbeddedResource Include="Scripts\070920241251_user.sql" />
   </ItemGroup>
 
 </Project>

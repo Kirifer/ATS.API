@@ -1,6 +1,9 @@
-﻿namespace Ats.Models
+﻿using Ats.Core.Database.Abstraction;
+using Ats.Datalayer.Interface;
+
+namespace Ats.Datalayer.Entities
 {
-    public class AtsUserCreateDto
+    public class User : DbEntityIdBase
     {
         public required string Username { get; set; }
         public required string Password { get; set; }

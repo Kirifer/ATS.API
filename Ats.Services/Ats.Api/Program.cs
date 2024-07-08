@@ -1,3 +1,7 @@
+using Ats.Api.Configurations;
+using Ats.Core.Abstraction;
+using Ats.Core.Api;
+using Ats.Core.ApiConfig;
 using Ats.Core.Config;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +22,15 @@ if (secretsConfig == null)
 }
 
 builder.Services.AddSingleton<IMicroServiceConfig, MicroServiceConfig>(service => secretsConfig);
-builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddCoreLogging();
+builder.Services.AddCoreControllers();
+//builder.Services.AddControllers();
+//builder.Services.AddCoreCompression();
+builder.Services.AddCoreEntityServices<IEntityService>("Ats.Domain");
+builder.Services.AddAtsDatabase(secretsConfig);
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,9 +45,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAtsDatabase();
 app.UseAuthorization();
-
+app.UseRouting();
 app.MapControllers();
 
 app.Run();

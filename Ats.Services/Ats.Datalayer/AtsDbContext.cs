@@ -1,6 +1,7 @@
 ﻿using Ats.Core.Database;
 using Ats.Core.Database.Abstraction;
 using Ats.Core.Database.Abstraction.Interface;
+using Ats.Datalayer.Entities;
 
 using Microsoft.EntityFrameworkCore;
 

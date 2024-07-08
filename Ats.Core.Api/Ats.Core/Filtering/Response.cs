@@ -30,6 +30,16 @@ namespace Ats.Core.Filtering
             };
         }
 
+        public static Response<TData> Error(HttpStatusCode code, ErrorCode errorCode, string message)
+        {
+            return new Response<TData>()
+            {
+                Code = code,
+                Data = default,
+                Errors = [new ErrorDto(errorCode, message)]
+            };
+        }
+
         public static Response<TData> Error(params ErrorDto[] errors)
         {
             return new Response<TData>()

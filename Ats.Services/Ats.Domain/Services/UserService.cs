@@ -1,9 +1,14 @@
 ﻿
+using System.Net;
+
 using Ats.Core.Abstraction;
 using Ats.Core.Filtering;
 using Ats.Datalayer;
+using Ats.Datalayer.Entities;
+using Ats.Datalayer.Interface;
 using Ats.Domain.Services.Interface;
 using Ats.Models;
+using Ats.Shared.Enums;
 
 using AutoMapper;
 
@@ -14,39 +19,110 @@ namespace Ats.Domain.Services
 {
     public class UserService: EntityService, IUserService
     {
+        private readonly IUserRepository _userRepository;
+
         public UserService(
-            AtsDbContext dbContext,
             IMapper mapper,
-            ILogger<UserService> logger
-            
-            ) : base(dbContext, mapper, logger)
-        {
+            ILogger<UserService> logger,
 
+            IUserRepository userRepository)
+            : base(mapper, logger)
+        {
+            _userRepository = userRepository;
         }
 
-        public Task<Response<AtsUserDto>> CreateUserAsync(AtsUserCreateDto user)
+        public async Task<Response<List<AtsUserDto>>> GetUsersAsync(AtsUserFilterDto filter)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _userRepository.GetAllAsync(u =>
+                string.IsNullOrEmpty(filter.Username) || u.Username == filter.Username);
+
+                var userDtos = Mapper.Map<List<AtsUserDto>>(result);
+
+                return Response<List<AtsUserDto>>.Success(userDtos);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while fetching users");
+                return Response<List<AtsUserDto>>.Exception(ex);
+            }
         }
 
-        public Task<Response<AtsUserDto>> DeleteUserAsync(Guid id)
+        public async Task<Response<AtsUserDto>> GetUserAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = await _userRepository.GetAsync(id);
+                var userDto = Mapper.Map<AtsUserDto>(result);
+                return Response<AtsUserDto>.Success(userDto);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while fetching user with id.");
+                return Response<AtsUserDto>.Exception(ex);
+            }
         }
 
-        public Task<Response<AtsUserDto>> GetUserAsync(Guid id)
+        public async Task<Response<AtsUserDto>> CreateUserAsync(AtsUserCreateDto user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var createRef = Mapper.Map<User>(user);
+
+                var result = await _userRepository.AddAsync(createRef);
+
+                var userDto = Mapper.Map<AtsUserDto>(result);
+
+                return Response<AtsUserDto>.Success(userDto);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while creating user.");
+                return Response<AtsUserDto>.Exception(ex);
+            }
         }
 
-        public Task<Response<List<AtsUserDto>>> GetUsersAsync(AtsUserFilterDto filter)
+        public async Task<Response<AtsUserDto>> UpdateUserAsync(Guid id, AtsUserUpdateDto user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var updateRef = await _userRepository.GetAsync(id);
+
+                updateRef.FirstName = user.FirstName;
+                updateRef.LastName = user.LastName;
+                updateRef.Password = user.Password;
+
+                var result = await _userRepository.UpdateAsync(updateRef);
+
+                var userDto = Mapper.Map<AtsUserDto>(result);
+
+                return Response<AtsUserDto>.Success(userDto);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while updating user.");
+                return Response<AtsUserDto>.Exception(ex);
+            }
         }
 
-        public Task<Response<AtsUserDto>> UpdateUserAsync(Guid id, AtsUserUpdateDto user)
+        public async Task<Response<AtsUserDto>> DeleteUserAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var deleteRef = await _userRepository.GetAsync(id);
+
+                var result = await _userRepository.DeleteAsync(deleteRef);
+
+                var userDto = Mapper.Map<AtsUserDto>(result);
+
+                return Response<AtsUserDto>.Success(userDto);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while deleting user.");
+                return Response<AtsUserDto>.Exception(ex);
+            }
         }
     }
 }
