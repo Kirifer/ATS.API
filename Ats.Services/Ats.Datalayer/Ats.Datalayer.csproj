@@ -6,12 +6,20 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
   <ItemGroup>
     <ProjectReference Include="..\..\Ats.Core.Api\Ats.Core\Ats.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\071820241110_job_list.sql" />
     <EmbeddedResource Include="Scripts\070920241251_user.sql" />
+    <EmbeddedResource Include="Scripts\071920241600_recruitment.sql" />
+	<EmbeddedResource Include="Scripts\072120242030_candidate.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
   </ItemGroup>
 
 </Project>

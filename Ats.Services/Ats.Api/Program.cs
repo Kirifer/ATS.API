@@ -3,6 +3,8 @@ using Ats.Core.Abstraction;
 using Ats.Core.Api;
 using Ats.Core.ApiConfig;
 using Ats.Core.Config;
+using Ats.Datalayer.Implementation;
+using Ats.Datalayer.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,9 @@ builder.Services.AddCoreControllers();
 //builder.Services.AddCoreCompression();
 builder.Services.AddCoreEntityServices<IEntityService>("Ats.Domain");
 builder.Services.AddAtsDatabase(secretsConfig);
+builder.Services.AddScoped<IJobListRepository, JobListRepository>();
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<IRecruitmentRepository, RecruitmentRepository>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -45,6 +50,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(policy => policy
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowAnyOrigin());
 app.UseAtsDatabase();
 app.UseAuthorization();
 app.UseRouting();

@@ -10,7 +10,7 @@ namespace Ats.Domain.Services.Interface
 
         Task<Response<AtsUserDto>> GetUserAsync(Guid id);
 
-        Task<Response<AtsUserDto>> CreateUserAsync(AtsUserCreateDto user);
+        Task<Response<AtsUserDto>> CreateUserAsync(AtsJobListCreateDto user);
 
         Task<Response<AtsUserDto>> UpdateUserAsync(Guid id, AtsUserUpdateDto user);
 

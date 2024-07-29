@@ -64,7 +64,7 @@ namespace Ats.Domain.Services
             }
         }
 
-        public async Task<Response<AtsUserDto>> CreateUserAsync(AtsUserCreateDto user)
+        public async Task<Response<AtsUserDto>> CreateUserAsync(AtsJobListCreateDto user)
         {
             try
             {

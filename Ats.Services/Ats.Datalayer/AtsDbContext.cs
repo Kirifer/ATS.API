@@ -11,6 +11,12 @@ namespace Ats.Datalayer
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<JobList> JobLists { get; set; }
+
+        public DbSet<Recruitment> Recruitments { get; set; }
+
+        public DbSet<Candidate> Candidates { get; set; }
+
         public AtsDbContext(DbContextOptions<DbContextBase> options)
            : base(options)
         {

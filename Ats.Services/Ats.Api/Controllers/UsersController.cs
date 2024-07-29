@@ -37,7 +37,7 @@ namespace Ats.Api.Controllers
         [HttpPost]
         [Route("users")]
         [ProducesResponseType(typeof(Response<AtsUserDto>), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> AddUserAsync([FromBody] AtsUserCreateDto user)
+        public async Task<IActionResult> AddUserAsync([FromBody] AtsJobListCreateDto user)
         {
             var response = await userService.CreateUserAsync(user);
             return StatusCode((int)response.Code, response);
