@@ -17,10 +17,19 @@ namespace Ats.Datalayer.Implementation
 
         public async Task<int> GetLatestSequenceNo()
         {
+            //Get All Job Roles
+            // Use ToList() to load all records in memory
             var jobroles = Context.JobRoles.AsNoTracking().ToList();
 
+            if (jobroles == null || jobroles.Count == 0) 
+            { 
+            
+                return 0;
+            }
+            //Get Max Sequence No
             var maxSequenceNo = jobroles.Max(r => r.SequenceNo);
 
+            //Return Max Sequence No
             return maxSequenceNo;
 
         }
