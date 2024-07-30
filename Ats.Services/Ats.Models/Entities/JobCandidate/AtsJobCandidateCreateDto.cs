@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ats.Models.Entities.Recruitment
+namespace Ats.Models.Entities.JobCandidate
 {
-    public class AtsRecruitmentUpdateDto
+    public class AtsJobCandidateCreateDto
     {
+        public required string JobRoleId { get; set; }
+
+        public required string JobName { get; set; }
+
         public required string CandidateName { get; set; }
 
         public required string CandidateCv { get; set; }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ats.Models.Entities.Candidate
+namespace Ats.Models.Entities.JobRole
 {
-    public class AtsCandidateUpdateDto
+    public class AtsJobRoleUpdateDto
     {
         public required string JobName { get; set; }
 

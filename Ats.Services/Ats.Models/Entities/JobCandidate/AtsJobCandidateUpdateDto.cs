@@ -1,18 +1,13 @@
-﻿using Ats.Core.Database.Abstraction;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ats.Datalayer.Entities
+namespace Ats.Models.Entities.JobCandidate
 {
-    public class Recruitment : DbEntityIdBase
+    public class AtsJobCandidateUpdateDto
     {
-        public required string JobRoleID { get; set; }
-
-        public required string JobName { get; set; }
-
         public required string CandidateName { get; set; }
 
         public required string CandidateCv { get; set; }

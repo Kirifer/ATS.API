@@ -1,8 +1,13 @@
 ﻿using Ats.Shared.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ats.Models.Entities.Recruitment
+namespace Ats.Models.Entities.JobCandidate
 {
-    public class AtsRecruitmentDto : EntityBaseDto
+    public class AtsJobCandidateDto : EntityBaseDto
     {
         public string? JobRoleID { get; set; }
 

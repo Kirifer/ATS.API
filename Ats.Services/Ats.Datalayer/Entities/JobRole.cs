@@ -1,9 +1,15 @@
-﻿
+﻿using Ats.Core.Database.Abstraction;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ats.Models.Entities.Candidate
+namespace Ats.Datalayer.Entities
 {
-    public class AtsCandidateCreateDto
+    public class JobRole : DbEntityIdBase
     {
+        public int SequenceNo { get; set; }
         public required string JobName { get; set; }
 
         public required string ClientShortcodes { get; set; }

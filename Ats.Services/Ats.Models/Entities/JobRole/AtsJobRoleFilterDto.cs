@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Ats.Datalayer.Entities;
-
-namespace Ats.Datalayer.Interface
+namespace Ats.Models.Entities.JobRole
 {
-    public interface IJobListRepository : IBaseRepository<JobList>
+    public class AtsJobRoleFilterDto
     {
+        public Guid? Id { get; set; }
     }
 }

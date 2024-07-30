@@ -1,6 +1,6 @@
 ﻿namespace Ats.Models
 {
-    public class AtsJobListCreateDto
+    public class AtsUserCreateDto
     {
         public required string Username { get; set; }
         public required string Password { get; set; }

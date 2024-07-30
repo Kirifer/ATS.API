@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ats.Models.Entities.Candidate
+namespace Ats.Models.Entities.JobCandidate
 {
-    public class AtsCandidateFilterDto
+    public class AtsJobCandidateFilterDto
     {
         public Guid? Id { get; set; }
     }

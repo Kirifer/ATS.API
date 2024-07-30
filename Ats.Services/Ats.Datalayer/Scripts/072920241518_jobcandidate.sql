@@ -1,7 +1,7 @@
 do $$
 begin
   -- Create recruitment table
-  create table if not exists public.recruitments (
+  create table if not exists public.job_candidates (
     id uuid not null,
     job_role_id text not null,
     job_name text not null,
@@ -24,11 +24,11 @@ begin
     candidate_contract text not null,
     remarks text not null,
    
-    constraint pk_recruitments primary key (id)
+    constraint pk_job_candidates primary key (id)
   );
 
-  create index ix_recruitments_id
-    on public.recruitments using btree
+  create index ix_job_candidates_id
+    on public.job_candidates using btree
     (id asc nulls last);
 end;
 $$

@@ -1,8 +1,15 @@
-﻿namespace Ats.Models.Entities.Recruitment
+﻿using Ats.Core.Database.Abstraction;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ats.Datalayer.Entities
 {
-    public class AtsRecruitmentCreateDto
+    public class JobCandidate : DbEntityIdBase
     {
-        public required string JobRoleId { get; set; }
+        public required string JobRoleID { get; set; }
 
         public required string JobName { get; set; }
 

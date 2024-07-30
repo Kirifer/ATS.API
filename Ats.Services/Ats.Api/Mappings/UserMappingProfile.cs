@@ -7,10 +7,9 @@ namespace Ats.Api.Mappings
 {
     public class UserMappingProfile : Profile
     {
-
         public UserMappingProfile()
         {
-            CreateMap<AtsJobListCreateDto, User>(MemberList.Destination);
+            CreateMap<AtsUserCreateDto, User>(MemberList.Destination);
             CreateMap<AtsUserUpdateDto, User>(MemberList.Destination);
             CreateMap<User, AtsUserDto>(MemberList.Destination);
         }
