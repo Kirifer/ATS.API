@@ -8,40 +8,52 @@ namespace Ats.Models.Entities.JobCandidate
 {
     public class AtsJobCandidateUpdateDto
     {
-        public required string CandidateName { get; set; }
+        public required string CandidateName { get; set; } // Name
 
-        public required string CandidateCv { get; set; }
+        public required string JobRoleId { get; set; } // Job Role Number
 
-        public required string CandidateEmail { get; set; }
+        public required string JobName { get; set; } // Job Title (PUBLIC)
 
-        public required int CandidateContact { get; set; }
+        public required string SourceTool { get; set; } // Sourcing Tool
 
-        public required string SourceTool { get; set; }
+        public required string AssignedHr { get; set; } // HR In-Charge
 
-        public required string AssignedHr { get; set; }
+        public required string CandidateEmail { get; set; } // Email Address (PUBLIC)
 
-        public required int AskingSalary { get; set; }
+        public required string CandidateContact { get; set; } // Contact Number (PUBLIC)
 
-        public required string SalaryNegotiable { get; set; }
+        public required int AskingSalary { get; set; } // Asking Gross Salary (PUBLIC)
 
-        public required int MinSalary { get; set; }
+        public required string SalaryNegotiable { get; set; } // Negotiable (Yes/No) (PUBLIC)
 
-        public required int MaxSalary { get; set; }
+        public required int MinSalary { get; set; } // Minimum Negotiated Salary (PUBLIC)
 
-        public required string NoticeDuration { get; set; }
+        public required int MaxSalary { get; set; } // Maximum Negotiated Salary
 
-        public required string ApplicationStatus { get; set; }
+        public required string NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
 
-        public required int FinalSalary { get; set; }
+        public required DateTime DateApplied { get; set; } // Date Applied
 
-        public required int Allowance { get; set; }
+        public required DateTime InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
 
-        public required string Honorarium { get; set; }
+        public required DateTime TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
 
-        public required string JobOffer { get; set; }
+        public required DateTime ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
 
-        public required string CandidateContract { get; set; }
+        public required DateTime BackgroundVerification { get; set; } // Background Verification
 
-        public required string Remarks { get; set; }
+        public required string ApplicationStatus { get; set; } // Status (Application status)
+
+        public required int FinalSalary { get; set; } // Final Basic Salary
+
+        public required int Allowance { get; set; } // Allowances
+
+        public required string Honorarium { get; set; } // Honorarium (Basic)
+
+        public required DateTime JobOffer { get; set; } // Job Offer (Date)
+
+        public required DateTime CandidateContract { get; set; } // Job Contract (Date)
+
+        public required string Remarks { get; set; } // Remarks
     }
 }

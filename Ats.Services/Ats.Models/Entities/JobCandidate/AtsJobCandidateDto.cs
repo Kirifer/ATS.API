@@ -9,44 +9,52 @@ namespace Ats.Models.Entities.JobCandidate
 {
     public class AtsJobCandidateDto : EntityBaseDto
     {
-        public string? JobRoleID { get; set; }
+        public string? CandidateName { get; set; } // Name
 
-        public string? JobName { get; set; }
+        public string? JobRoleId { get; set; } // Job Role Number
 
-        public string? CandidateName { get; set; }
+        public string? JobName { get; set; } // Job Title (PUBLIC)
 
-        public string? CandidateCv { get; set; }
+        public string? SourceTool { get; set; } // Sourcing Tool
 
-        public string? CandidateEmail { get; set; }
+        public string? AssignedHr { get; set; } // HR In-Charge
 
-        public int? CandidateContact { get; set; }
+        public string? CandidateEmail { get; set; } // Email Address (PUBLIC)
 
-        public string? SourceTool { get; set; }
+        public string? CandidateContact { get; set; } // Contact Number (PUBLIC)
 
-        public string? AssignedHr { get; set; }
+        public int? AskingSalary { get; set; } // Asking Gross Salary (PUBLIC)
 
-        public int? AskingSalary { get; set; }
+        public string? SalaryNegotiable { get; set; } // Negotiable (Yes/No) (PUBLIC)
 
-        public string? SalaryNegotiable { get; set; }
+        public int? MinSalary { get; set; } // Minimum Negotiated Salary (PUBLIC)
 
-        public int? MinSalary { get; set; }
+        public int? MaxSalary { get; set; } // Maximum Negotiated Salary
 
-        public int? MaxSalary { get; set; }
+        public string? NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
 
-        public string? NoticeDuration { get; set; }
+        public DateTime? DateApplied { get; set; } // Date Applied
 
-        public string? ApplicationStatus { get; set; }
+        public DateTime? InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
 
-        public int? FinalSalary { get; set; }
+        public DateTime? TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
 
-        public int? Allowance { get; set; }
+        public DateTime? ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
 
-        public string? Honorarium { get; set; }
+        public DateTime? BackgroundVerification { get; set; } // Background Verification
 
-        public string? JobOffer { get; set; }
+        public string? ApplicationStatus { get; set; } // Status (Application status)
 
-        public string? CandidateContract { get; set; }
+        public int? FinalSalary { get; set; } // Final Basic Salary
 
-        public string? Remarks { get; set; }
+        public int? Allowance { get; set; } // Allowances
+
+        public string? Honorarium { get; set; } // Honorarium (Basic)
+
+        public DateTime? JobOffer { get; set; } // Job Offer (Date)
+
+        public DateTime? CandidateContract { get; set; } // Job Contract (Date)
+
+        public string? Remarks { get; set; } // Remarks
     }
 }

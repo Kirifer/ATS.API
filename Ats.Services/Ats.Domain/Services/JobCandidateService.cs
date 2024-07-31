@@ -66,6 +66,11 @@ namespace Ats.Domain.Services
             {
                 var createRef = Mapper.Map<JobCandidate>(candidate);
 
+                var csequenceNo = await _jobCandidateRepository.GetLatestSequenceNo();
+                csequenceNo += 1;
+
+                createRef.CsequenceNo = csequenceNo;
+
                 var result = await _jobCandidateRepository.AddAsync(createRef);
 
                 var candidateDto = Mapper.Map<AtsJobCandidateDto>(result);
@@ -85,17 +90,24 @@ namespace Ats.Domain.Services
             {
                 var updateRef = await _jobCandidateRepository.GetAsync(id);
 
+
                 updateRef.CandidateName = candidate.CandidateName;
-                updateRef.CandidateCv = candidate.CandidateCv;
+                updateRef.JobRoleId = candidate.JobRoleId; // Added JobRoleId
+                updateRef.JobName = candidate.JobName; // Added JobName
+                updateRef.SourceTool = candidate.SourceTool; // Fixed to match schema
+                updateRef.AssignedHr = candidate.AssignedHr;
                 updateRef.CandidateEmail = candidate.CandidateEmail;
                 updateRef.CandidateContact = candidate.CandidateContact;
-                updateRef.SourceTool = candidate.SourceTool;
-                updateRef.AssignedHr = candidate.AssignedHr;
                 updateRef.AskingSalary = candidate.AskingSalary;
                 updateRef.SalaryNegotiable = candidate.SalaryNegotiable;
                 updateRef.MinSalary = candidate.MinSalary;
                 updateRef.MaxSalary = candidate.MaxSalary;
                 updateRef.NoticeDuration = candidate.NoticeDuration;
+                updateRef.DateApplied = candidate.DateApplied; // Added DateApplied
+                updateRef.InitialInterviewSchedule = candidate.InitialInterviewSchedule; // Added InitialInterviewSchedule
+                updateRef.TechnicalInterviewSchedule = candidate.TechnicalInterviewSchedule; // Added TechnicalInterviewSchedule
+                updateRef.ClientFinalInterviewSchedule = candidate.ClientFinalInterviewSchedule; // Added ClientFinalInterviewSchedule
+                updateRef.BackgroundVerification = candidate.BackgroundVerification; // Added BackgroundVerification
                 updateRef.ApplicationStatus = candidate.ApplicationStatus;
                 updateRef.FinalSalary = candidate.FinalSalary;
                 updateRef.Allowance = candidate.Allowance;

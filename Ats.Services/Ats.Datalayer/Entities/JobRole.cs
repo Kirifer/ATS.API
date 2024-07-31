@@ -10,6 +10,7 @@ namespace Ats.Datalayer.Entities
     public class JobRole : DbEntityIdBase
     {
         public int SequenceNo { get; set; }
+
         public required string JobName { get; set; }
 
         public required string ClientShortcodes { get; set; }

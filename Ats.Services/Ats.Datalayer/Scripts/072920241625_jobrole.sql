@@ -1,23 +1,24 @@
 -- Create job role table
   create table if not exists public.job_roles (
-      id uuid not null,
-      sequence_no int not null,
-      job_name text not null,
-      client_shortcodes text not null,
-      hiring_manager text not null,
-      sales_manager text not null,
-      hiring_type text not null,
-      job_description text not null,
-      role_level text not null,
-      min_salary int not null,
-      max_salary int not null,
-      job_location text not null,
-      shift_sched text not null,
-      job_status text not null,
-      open_date date not null default current_date,
-      closed_date date not null,
-      days_covered int not null,  -- Using int to store the number of days
-      aging text not null default '0 days & 0 months',  -- Default value for aging
+      id uuid not null, -- Unique identifier for each candidate
+      sequence_no int not null, -- Job Role No.
+      job_name text not null, -- Job Title
+      client_shortcodes text not null, -- Client Shortcodes
+      hiring_manager text not null, -- Hiring Manager
+      sales_manager text not null, -- Sales Manager
+      hiring_type text not null, -- Type of Hiring
+      job_description text not null, -- Job Description
+      role_level text not null, -- Role Level
+      min_salary int not null, -- Minimum Salary
+      max_salary int not null, -- Maximum Salary
+      job_location text not null, -- Location
+      shift_sched text not null, -- Schedule
+      job_status text not null, -- Status
+      --Candidate (JC#)
+      open_date date not null default current_date, -- Date Requested
+      closed_date date not null, -- Closed Date
+      days_covered int not null,  -- Using int to store the number of days (Days Covered)
+      aging text not null default '0 days & 0 months',  -- Default value for aging (Aging)
    
     constraint pk_job_roles primary key (id)
   );
