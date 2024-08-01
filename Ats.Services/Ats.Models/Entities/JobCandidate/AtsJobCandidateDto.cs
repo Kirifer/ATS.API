@@ -33,15 +33,15 @@ namespace Ats.Models.Entities.JobCandidate
 
         public string? NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
 
-        public DateTime? DateApplied { get; set; } // Date Applied
+        public DateOnly? DateApplied { get; set; } // Date Applied
 
-        public DateTime? InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
+        public DateOnly? InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
 
-        public DateTime? TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
+        public DateOnly? TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
 
-        public DateTime? ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
+        public DateOnly? ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
 
-        public DateTime? BackgroundVerification { get; set; } // Background Verification
+        public DateOnly? BackgroundVerification { get; set; } // Background Verification
 
         public string? ApplicationStatus { get; set; } // Status (Application status)
 
@@ -51,9 +51,9 @@ namespace Ats.Models.Entities.JobCandidate
 
         public string? Honorarium { get; set; } // Honorarium (Basic)
 
-        public DateTime? JobOffer { get; set; } // Job Offer (Date)
+        public DateOnly? JobOffer { get; set; } // Job Offer (Date)
 
-        public DateTime? CandidateContract { get; set; } // Job Contract (Date)
+        public DateOnly? CandidateContract { get; set; } // Job Contract (Date)
 
         public string? Remarks { get; set; } // Remarks
     }
