@@ -8,54 +8,58 @@ namespace Ats.Models.Entities.JobCandidate
 {
     public class AtsJobCandidateCreateDto
     {
-        public required string CandidateName { get; set; } // Name
+        public Guid Id { get; set; } // GUID
 
-        public required string JobRoleId { get; set; } // Job Role Number
+        public int CsequenceNo { get; set; } // Sequence Number
 
-        public required string JobName { get; set; } // Job Title (PUBLIC)
+        public string CandidateName { get; set; } // Name
 
-        public required string SourceTool { get; set; } // Sourcing Tool
+        public string JobRoleId { get; set; } // Job Role Number
 
-        public required string AssignedHr { get; set; } // HR In-Charge
+        public string JobName { get; set; } // Job Title (PUBLIC)
 
-        public required string CandidateEmail { get; set; } // Email Address (PUBLIC)
+        public string SourceTool { get; set; } // Sourcing Tool
 
-        public required string CandidateContact { get; set; } // Contact Number (PUBLIC)
+        public string AssignedHr { get; set; } // HR In-Charge
 
-        public required string CandidateCv { get; set; } // CV (PUBLIC)
+        public string CandidateEmail { get; set; } // Email Address (PUBLIC)
 
-        public required int AskingSalary { get; set; } // Asking Gross Salary (PUBLIC)
+        public string CandidateContact { get; set; } // Contact Number (PUBLIC)
 
-        public required string SalaryNegotiable { get; set; } // Negotiable (Yes/No) (PUBLIC)
+        public string CandidateCv { get; set; } // CV (PUBLIC)
 
-        public required int MinSalary { get; set; } // Minimum Negotiated Salary (PUBLIC)
+        public int AskingSalary { get; set; } // Asking Gross Salary (PUBLIC)
 
-        public required int MaxSalary { get; set; } // Maximum Negotiated Salary
+        public string SalaryNegotiable { get; set; } // Negotiable (Yes/No) (PUBLIC)
 
-        public required string NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
+        public int MinSalary { get; set; } // Minimum Negotiated Salary (PUBLIC)
 
-        public required DateOnly DateApplied { get; set; } // Date Applied
+        public int MaxSalary { get; set; } // Maximum Negotiated Salary
 
-        public required DateOnly InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
+        public string NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
 
-        public required DateOnly TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
+        public DateOnly DateApplied { get; set; } // Date Applied
 
-        public required DateOnly ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
+        public DateOnly InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
 
-        public required DateOnly BackgroundVerification { get; set; } // Background Verification
+        public DateOnly TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
 
-        public required string ApplicationStatus { get; set; } // Status (Application status)
+        public DateOnly ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
 
-        public required int FinalSalary { get; set; } // Final Basic Salary
+        public DateOnly BackgroundVerification { get; set; } // Background Verification
 
-        public required int Allowance { get; set; } // Allowances
+        public string ApplicationStatus { get; set; } // Status (Application status)
 
-        public required string Honorarium { get; set; } // Honorarium (Basic)
+        public int FinalSalary { get; set; } // Final Basic Salary
 
-        public required DateOnly JobOffer { get; set; } // Job Offer (Date)
+        public int Allowance { get; set; } // Allowances
 
-        public required DateOnly CandidateContract { get; set; } // Job Contract (Date)
+        public string Honorarium { get; set; } // Honorarium (Basic)
 
-        public required string Remarks { get; set; } // Remarks
+        public DateOnly JobOffer { get; set; } // Job Offer (Date)
+
+        public DateOnly CandidateContract { get; set; } // Job Contract (Date)
+
+        public string Remarks { get; set; } // Remarks
     }
 }

@@ -9,6 +9,10 @@ namespace Ats.Models.Entities.JobCandidate
 {
     public class AtsJobCandidateDto : EntityBaseDto
     {
+        public Guid? Id { get; set; }
+
+        public int? CsequenceNo { get; set; } // Sequence Number
+
         public string? CandidateName { get; set; } // Name
 
         public string? JobRoleId { get; set; } // Job Role Number
@@ -20,6 +24,8 @@ namespace Ats.Models.Entities.JobCandidate
         public string? AssignedHr { get; set; } // HR In-Charge
 
         public string? CandidateEmail { get; set; } // Email Address (PUBLIC)
+
+        public string? CandidateCv { get; set; } // CV (PUBLIC)
 
         public string? CandidateContact { get; set; } // Contact Number (PUBLIC)
 

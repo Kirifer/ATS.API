@@ -18,7 +18,7 @@
       open_date date not null default current_date, -- Date Requested
       closed_date date not null, -- Closed Date
       days_covered int not null,  -- Using int to store the number of days (Days Covered)
-      aging text not null default '0 days & 0 months',  -- Default value for aging (Aging)
+      aging text not null default  -- Default value for aging (Aging)
    
     constraint pk_job_roles primary key (id)
   );

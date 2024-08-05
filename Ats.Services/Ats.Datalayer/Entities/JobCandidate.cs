@@ -9,6 +9,8 @@ namespace Ats.Datalayer.Entities
 {
     public class JobCandidate : DbEntityIdBase
     {
+        public Guid Id { get; set; }
+
         public int CsequenceNo { get; set; } // Job Candidate Number
 
         public required string CandidateName { get; set; } // Name

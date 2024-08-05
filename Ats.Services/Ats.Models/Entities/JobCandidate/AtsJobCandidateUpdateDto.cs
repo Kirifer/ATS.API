@@ -8,52 +8,54 @@ namespace Ats.Models.Entities.JobCandidate
 {
     public class AtsJobCandidateUpdateDto
     {
-        public required string CandidateName { get; set; } // Name
+        public Guid Id { get; set; }
 
-        public required string JobRoleId { get; set; } // Job Role Number
+        public string CandidateName { get; set; } // Name
 
-        public required string JobName { get; set; } // Job Title (PUBLIC)
+        public string JobRoleId { get; set; } // Job Role Number
 
-        public required string SourceTool { get; set; } // Sourcing Tool
+        public string JobName { get; set; } // Job Title (PUBLIC)
 
-        public required string AssignedHr { get; set; } // HR In-Charge
+        public string SourceTool { get; set; } // Sourcing Tool
 
-        public required string CandidateEmail { get; set; } // Email Address (PUBLIC)
+        public string AssignedHr { get; set; } // HR In-Charge
 
-        public required string CandidateContact { get; set; } // Contact Number (PUBLIC)
+        public string CandidateEmail { get; set; } // Email Address (PUBLIC)
 
-        public required int AskingSalary { get; set; } // Asking Gross Salary (PUBLIC)
+        public string CandidateContact { get; set; } // Contact Number (PUBLIC)
 
-        public required string SalaryNegotiable { get; set; } // Negotiable (Yes/No) (PUBLIC)
+        public int AskingSalary { get; set; } // Asking Gross Salary (PUBLIC)
 
-        public required int MinSalary { get; set; } // Minimum Negotiated Salary (PUBLIC)
+        public string SalaryNegotiable { get; set; } // Negotiable (Yes/No) (PUBLIC)
 
-        public required int MaxSalary { get; set; } // Maximum Negotiated Salary
+        public int MinSalary { get; set; } // Minimum Negotiated Salary (PUBLIC)
 
-        public required string NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
+        public int MaxSalary { get; set; } // Maximum Negotiated Salary
 
-        public required DateOnly DateApplied { get; set; } // Date Applied
+        public string NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
 
-        public required DateOnly InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
+        public DateOnly DateApplied { get; set; } // Date Applied
 
-        public required DateOnly TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
+        public DateOnly InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
 
-        public required DateOnly ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
+        public DateOnly TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
 
-        public required DateOnly BackgroundVerification { get; set; } // Background Verification
+        public DateOnly ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
 
-        public required string ApplicationStatus { get; set; } // Status (Application status)
+        public DateOnly BackgroundVerification { get; set; } // Background Verification
 
-        public required int FinalSalary { get; set; } // Final Basic Salary
+        public string ApplicationStatus { get; set; } // Status (Application status)
 
-        public required int Allowance { get; set; } // Allowances
+        public int FinalSalary { get; set; } // Final Basic Salary
 
-        public required string Honorarium { get; set; } // Honorarium (Basic)
+        public int Allowance { get; set; } // Allowances
 
-        public required DateOnly JobOffer { get; set; } // Job Offer (Date)
+        public string Honorarium { get; set; } // Honorarium (Basic)
 
-        public required DateOnly CandidateContract { get; set; } // Job Contract (Date)
+        public DateOnly JobOffer { get; set; } // Job Offer (Date)
 
-        public required string Remarks { get; set; } // Remarks
+        public DateOnly CandidateContract { get; set; } // Job Contract (Date)
+
+        public string Remarks { get; set; } // Remarks
     }
 }

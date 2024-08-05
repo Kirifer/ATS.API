@@ -8,30 +8,35 @@ namespace Ats.Models.Entities.JobRole
 {
     public class AtsJobRoleCreateDto
     {
-        public required string JobName { get; set; }
+        public Guid Id { get; set; }
 
-        public required string ClientShortcodes { get; set; }
+        public int SequenceNo { get; set; } // Job Role No.
 
-        public required string HiringManager { get; set; }
+        public string JobName { get; set; } // Job Title
 
-        public required string SalesManager { get; set; }
+        public string ClientShortcodes { get; set; } // Client Shortcodes
 
-        public required string HiringType { get; set; }
+        public string HiringManager { get; set; } // Hiring Manager
 
-        public required string JobDescription { get; set; }
+        public string SalesManager { get; set; } // Sales Manager
 
-        public required string RoleLevel { get; set; }
+        public string HiringType { get; set; } // Type of Hiring
 
-        public required int MinSalary { get; set; }
+        public string JobDescription { get; set; } // Job Description
 
-        public required int MaxSalary { get; set; }
+        public string RoleLevel { get; set; } // Role Level
 
-        public required string JobLocation { get; set; }
+        public int MinSalary { get; set; } // Minimum Salary
 
-        public required string ShiftSched { get; set; }
+        public int MaxSalary { get; set; } // Maximum Salary
 
-        public required string JobStatus { get; set; }
+        public string JobLocation { get; set; } // Location
 
-        public required DateOnly ClosedDate { get; set; }
+        public string ShiftSched { get; set; } // Schedule
+
+        public string JobStatus { get; set; } // Status
+
+        public DateOnly? ClosedDate { get; set; } // Closed Date
+
     }
 }
