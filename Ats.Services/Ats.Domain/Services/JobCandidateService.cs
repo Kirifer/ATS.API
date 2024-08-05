@@ -66,13 +66,16 @@ namespace Ats.Domain.Services
             {
                 var createRef = Mapper.Map<JobCandidate>(candidate);
 
+                // Get the next sequence number from the repository
                 var csequenceNo = await _jobCandidateRepository.GetLatestSequenceNo();
-                csequenceNo += 1;
 
+                // Set the sequence number to the job candidate
                 createRef.CsequenceNo = csequenceNo;
 
+                // Add the job candidate
                 var result = await _jobCandidateRepository.AddAsync(createRef);
 
+                // Map the result to DTO
                 var candidateDto = Mapper.Map<AtsJobCandidateDto>(result);
 
                 return Response<AtsJobCandidateDto>.Success(candidateDto);
@@ -83,6 +86,7 @@ namespace Ats.Domain.Services
                 return Response<AtsJobCandidateDto>.Exception(ex);
             }
         }
+
 
         public async Task<Response<AtsJobCandidateDto>> UpdateJobCandidateAsync(Guid id, AtsJobCandidateUpdateDto candidate)
         {

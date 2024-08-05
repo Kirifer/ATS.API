@@ -3,7 +3,7 @@ begin
   -- Create recruitment table
   create table if not exists public.job_candidates (
     id uuid not null,
-    csequence_no int not null, -- Job Candidate Number
+    csequence_no text not null, -- Job Candidate Number
     candidate_name text not null, -- Name
     job_role_id text not null, -- Job Role Number
     job_name text not null, -- Job Title (PUBLIC)

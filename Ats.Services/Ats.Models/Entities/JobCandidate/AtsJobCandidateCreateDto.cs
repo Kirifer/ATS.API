@@ -10,8 +10,6 @@ namespace Ats.Models.Entities.JobCandidate
     {
         public Guid Id { get; set; } // GUID
 
-        public int CsequenceNo { get; set; } // Sequence Number
-
         public string CandidateName { get; set; } // Name
 
         public string JobRoleId { get; set; } // Job Role Number

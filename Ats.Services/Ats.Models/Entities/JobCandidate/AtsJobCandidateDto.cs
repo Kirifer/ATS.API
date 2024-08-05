@@ -11,7 +11,7 @@ namespace Ats.Models.Entities.JobCandidate
     {
         public Guid? Id { get; set; }
 
-        public int? CsequenceNo { get; set; } // Sequence Number
+        public string? CsequenceNo { get; set; } // Sequence Number
 
         public string? CandidateName { get; set; } // Name
 
