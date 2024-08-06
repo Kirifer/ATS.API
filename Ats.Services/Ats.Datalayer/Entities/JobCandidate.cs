@@ -62,5 +62,8 @@ namespace Ats.Datalayer.Entities
         public DateOnly? CandidateContract { get; set; } // Job Contract (Date)
             
         public string Remarks { get; set; } // Remarks
+
+        // Navigation Properties
+        public virtual ICollection<JobCandidateAttachment> JobCandidateAttachments { get; set; }
     }
 }

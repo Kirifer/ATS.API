@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\072920241518_jobcandidate.sql" />
-    <None Remove="Scripts\072920241625_jobrole.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Ats.Core.Api\Ats.Core\Ats.Core.csproj" />
   </ItemGroup>
 
@@ -19,6 +14,7 @@
     <EmbeddedResource Include="Scripts\072920241625_jobrole.sql" />
     <EmbeddedResource Include="Scripts\072920241518_jobcandidate.sql" />
     <EmbeddedResource Include="Scripts\070920241251_user.sql" />
+    <EmbeddedResource Include="Scripts\080620241223_jobcandidate-attachments.sql" />
   </ItemGroup>
 
 </Project>

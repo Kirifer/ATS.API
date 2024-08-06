@@ -10,5 +10,7 @@ namespace Ats.Datalayer.Interface
     public interface IJobCandidateRepository : IBaseRepository<JobCandidate>
     {
         Task<string> GetLatestSequenceNo();
+
+        Task<JobCandidate?> GetJobCandidateDetailsAsync(Guid id);
     }
 }

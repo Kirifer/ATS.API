@@ -42,5 +42,11 @@ namespace Ats.Datalayer.Implementation
             return $"JC-{nextSequenceNo:D5}"; // Format as "JC-00001", "JC-00002", etc.
         }
 
+        public async Task<JobCandidate?> GetJobCandidateDetailsAsync(Guid id)
+        {
+            return await Context.JobCandidates
+                .Include(c => c.JobCandidateAttachments)
+                .FirstOrDefaultAsync(c => c.Id == id);
+        }
     }
 }

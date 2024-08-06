@@ -59,5 +59,7 @@ namespace Ats.Models.Entities.JobCandidate
         public DateOnly CandidateContract { get; set; } // Job Contract (Date)
 
         public string Remarks { get; set; } // Remarks
+
+        public List<AtsJobCandidateAttachmentUploadDto>? Attachments { get; set;}
     }
 }

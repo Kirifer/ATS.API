@@ -12,6 +12,7 @@ namespace Ats.Datalayer
         public DbSet<User> Users { get; set; }
 
         public DbSet<JobCandidate> JobCandidates { get; set; }
+        public DbSet<JobCandidateAttachment> JobCandidateAttachments { get; set; }
 
         public DbSet<JobRole> JobRoles { get; set; }
 

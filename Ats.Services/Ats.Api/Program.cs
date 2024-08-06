@@ -33,6 +33,7 @@ builder.Services.AddCoreEntityServices<IEntityService>("Ats.Domain");
 builder.Services.AddAtsDatabase(secretsConfig);
 builder.Services.AddScoped<IJobCandidateRepository, JobCandidateRepository>();
 builder.Services.AddScoped<IJobRoleRepository, JobRoleRepository>();
+builder.Services.AddScoped<IJobCandidateAttachmentRepository, JobCandidateAttachmentRepository>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

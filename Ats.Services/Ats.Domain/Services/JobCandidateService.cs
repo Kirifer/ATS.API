@@ -18,14 +18,17 @@ namespace Ats.Domain.Services
     public class JobCandidateService : EntityService, IJobCandidateService
     {
         private readonly IJobCandidateRepository _jobCandidateRepository;
+        private readonly IJobCandidateAttachmentService _jobCandidateAttachmentService;
 
         public JobCandidateService (
             IMapper mapper,
             ILogger<JobCandidateService> logger,
-            IJobCandidateRepository jobCandidateRepository)
+            IJobCandidateRepository jobCandidateRepository,
+            IJobCandidateAttachmentService jobCandidateAttachmentService)
             : base (mapper, logger)
         {
             _jobCandidateRepository = jobCandidateRepository;
+            _jobCandidateAttachmentService = jobCandidateAttachmentService;
         }
 
         public async Task<Response<List<AtsJobCandidateDto>>> GetJobCandidatesAsync(AtsJobCandidateFilterDto filter)
@@ -49,8 +52,19 @@ namespace Ats.Domain.Services
         {
             try
             {
-                var result = await _jobCandidateRepository.GetAsync(id);
+                var result = await _jobCandidateRepository.GetJobCandidateDetailsAsync(id);
                 var candidateDtoList = Mapper.Map<AtsJobCandidateDto>(result);
+
+                // Load the attachments
+                if (result != null && result.JobCandidateAttachments != null && result.JobCandidateAttachments.Count != 0)
+                {
+                    var attachmentResult = await _jobCandidateAttachmentService.GetJobCandidateAttachmentsAsync(result.Id);
+                    if (attachmentResult.Succeeded)
+                    {
+                        candidateDtoList.Attachments = attachmentResult.Data;
+                    }
+                }
+
                 return Response<AtsJobCandidateDto>.Success(candidateDtoList);
             }
             catch (Exception ex)
@@ -74,6 +88,19 @@ namespace Ats.Domain.Services
 
                 // Add the job candidate
                 var result = await _jobCandidateRepository.AddAsync(createRef);
+
+                // Upload the attachments
+                if (candidate.Attachments != null && candidate.Attachments.Count != 0)
+                {
+                    foreach (var attachment in candidate.Attachments)
+                    {
+                        var attachmentResult = await _jobCandidateAttachmentService.UploadJobCandidateAttachmentAsync(result.Id, attachment);
+                        if (!attachmentResult.Succeeded)
+                        {
+                            Logger.LogError("Error occurred while creating attachment for candidate.");
+                        }
+                    }
+                }
 
                 // Map the result to DTO
                 var candidateDto = Mapper.Map<AtsJobCandidateDto>(result);

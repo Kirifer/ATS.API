@@ -11,9 +11,11 @@ namespace Ats.Api.Controllers
     [ProducesResponseType(typeof(Response<>), (int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType(typeof(Response<>), (int)HttpStatusCode.Forbidden)]
     [ProducesResponseType(typeof(Response<>), (int)HttpStatusCode.InternalServerError)]
-    public class JobCandidateController(IJobCandidateService jobCandidateService) : ControllerBase
+    public class JobCandidateController(IJobCandidateService jobCandidateService,
+        IJobCandidateAttachmentService jobCandidateAttachmentService) : ControllerBase
     {
         private readonly IJobCandidateService jobCandidateService = jobCandidateService;
+        private readonly IJobCandidateAttachmentService jobCandidateAttachmentService = jobCandidateAttachmentService;
 
         [HttpGet]
         [Route("jobcandidate")]
@@ -60,5 +62,25 @@ namespace Ats.Api.Controllers
             return StatusCode((int)response.Code, response);
         }
 
+        #region Job Candidate Attachment
+        // In case you want to download the attachment seperately and lessen the load on the main API (job candidate)
+        [HttpGet]
+        [Route("jobcandidate/{id}/attachments/{attachmentId}")]
+        [ProducesResponseType(typeof(Response<AtsJobCandidateAttachmentDto>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetJobCandidateAttachmentsAsync(Guid id, Guid attachmentId)
+        {
+            var response = await jobCandidateAttachmentService.GetJobCandidateAttachmentsAsync(attachmentId);
+            return StatusCode((int)response.Code, response);
+        }
+
+        [HttpDelete]
+        [Route("jobcandidate/{id}/attachments/{attachmentId}")]
+        [ProducesResponseType(typeof(Response<AtsJobCandidateAttachmentDto>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteJobCandidateAttachmentAsync(Guid id, Guid attachmentId)
+        {
+            var response = await jobCandidateAttachmentService.DeleteJobCandidateAttachmentAsync(attachmentId);
+            return StatusCode((int)response.Code, response);
+        }
+        #endregion
     }
 }
