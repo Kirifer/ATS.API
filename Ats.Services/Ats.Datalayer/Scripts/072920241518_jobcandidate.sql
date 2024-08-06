@@ -30,7 +30,7 @@ begin
     honorarium text not null, -- Honorarium (Basic)
     job_offer date not null, -- Job Offer (Date)
     candidate_contract date not null, -- Job Contract (Date)
-    remarks text not null, -- Remarks
+    remarks text not null,
    
     constraint pk_job_candidates primary key (id)
   );

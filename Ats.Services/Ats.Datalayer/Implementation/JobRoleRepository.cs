@@ -15,23 +15,33 @@ namespace Ats.Datalayer.Implementation
         {
         }
 
-        public async Task<int> GetLatestSequenceNo()
+        public async Task<string> GetLatestSequenceNo()
         {
-            //Get All Job Roles
-            // Use ToList() to load all records in memory
-            var jobroles = Context.JobRoles.AsNoTracking().ToList();
+            // Get All Job Roles
+            var jobRoles = Context.JobRoles.AsNoTracking().ToList();
 
-            if (jobroles == null || jobroles.Count == 0) 
-            { 
-            
-                return 0;
+            if (jobRoles == null || jobRoles.Count == 0)
+            {
+                // Return the first sequence number if no records exist
+                return "JR-00001";
             }
-            //Get Max Sequence No
-            var maxSequenceNo = jobroles.Max(r => r.SequenceNo);
 
-            //Return Max Sequence No
-            return maxSequenceNo;
+            // Extract the numeric part from the sequence numbers
+            var sequenceNos = jobRoles
+                .Select(r => r.SequenceNo)
+                .Where(seq => seq.StartsWith("JR-"))
+                .Select(seq =>
+                {
+                    var numberPart = seq.Substring(3); // Remove "JR-"
+                    return int.TryParse(numberPart, out var num) ? num : 0;
+                });
 
+            // Get Max Sequence Number
+            var maxSequenceNo = sequenceNos.Any() ? sequenceNos.Max() : 0;
+
+            // Format the result as "JR-000X" with leading zeros
+            var nextSequenceNo = maxSequenceNo + 1;
+            return $"JR-{nextSequenceNo:D5}"; // Format as "JR-00001", "JR-00002", etc.
         }
 
 

@@ -1,8 +1,10 @@
 ﻿using Ats.Core.Abstraction;
 using Ats.Core.Filtering;
 using Ats.Datalayer.Entities;
+using Ats.Datalayer.Implementation;
 using Ats.Datalayer.Interface;
 using Ats.Domain.Services.Interface;
+using Ats.Models.Entities.JobCandidate;
 using Ats.Models.Entities.JobRole;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
@@ -65,13 +67,18 @@ namespace Ats.Domain.Services
             {
                 var createRef = Mapper.Map<JobRole>(role);
 
-                var sequenceNo = await _jobRoleRepository.GetLatestSequenceNo();
-                sequenceNo += 1;
+                createRef.OpenDate = DateOnly.FromDateTime(DateTime.UtcNow);
 
+                // Get the next sequence number from the repository
+                var sequenceNo = await _jobRoleRepository.GetLatestSequenceNo();
+
+                // Set the sequence number to the job candidate
                 createRef.SequenceNo = sequenceNo;
 
+                // Add the job candidate
                 var result = await _jobRoleRepository.AddAsync(createRef);
 
+                // Map the result to DTO
                 var roleDto = Mapper.Map<AtsJobRoleDto>(result);
 
                 return Response<AtsJobRoleDto>.Success(roleDto);

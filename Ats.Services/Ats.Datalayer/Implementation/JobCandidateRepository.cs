@@ -21,25 +21,25 @@ namespace Ats.Datalayer.Implementation
             if (jobCandidates == null || jobCandidates.Count == 0)
             {
                 // Return the first sequence number if no records exist
-                return "JR-0001";
+                return "JC-00001";
             }
 
             // Extract the numeric part from the sequence numbers
             var sequenceNos = jobCandidates
                 .Select(c => c.CsequenceNo)
-                .Where(seq => seq.StartsWith("JR-"))
+                .Where(seq => seq.StartsWith("JC-"))
                 .Select(seq =>
                 {
-                    var numberPart = seq.Substring(3); // Remove "JR-"
+                    var numberPart = seq.Substring(3); // Remove "JC-"
                     return int.TryParse(numberPart, out var num) ? num : 0;
                 });
 
             // Get Max Sequence Number
             var maxSequenceNo = sequenceNos.Any() ? sequenceNos.Max() : 0;
 
-            // Format the result as "JR-000X" with leading zeros
+            // Format the result as "JC-000X" with leading zeros
             var nextSequenceNo = maxSequenceNo + 1;
-            return $"JR-{nextSequenceNo:D4}"; // Format as "JR-0001", "JR-0002", etc.
+            return $"JC-{nextSequenceNo:D5}"; // Format as "JC-00001", "JC-00002", etc.
         }
 
     }

@@ -10,8 +10,6 @@ namespace Ats.Models.Entities.JobRole
     {
         public Guid Id { get; set; }
 
-        public int SequenceNo { get; set; } // Job Role No.
-
         public string JobName { get; set; } // Job Title
 
         public string ClientShortcodes { get; set; } // Client Shortcodes
@@ -37,6 +35,5 @@ namespace Ats.Models.Entities.JobRole
         public string JobStatus { get; set; } // Status
 
         public DateOnly? ClosedDate { get; set; } // Closed Date
-
     }
 }

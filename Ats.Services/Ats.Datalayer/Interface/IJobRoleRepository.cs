@@ -9,6 +9,6 @@ namespace Ats.Datalayer.Interface
 {
     public interface IJobRoleRepository : IBaseRepository<JobRole>
     {
-        Task<int> GetLatestSequenceNo();
+        Task<string> GetLatestSequenceNo();
     }
 }

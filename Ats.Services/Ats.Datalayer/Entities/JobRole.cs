@@ -11,7 +11,7 @@ namespace Ats.Datalayer.Entities
     {
         public Guid Id { get; set; }
 
-        public int SequenceNo { get; set; }
+        public string SequenceNo { get; set; }
 
         public string JobName { get; set; }
 
@@ -37,9 +37,9 @@ namespace Ats.Datalayer.Entities
 
         public string JobStatus { get; set; }
 
-        public DateOnly? ClosedDate { get; set; }
-
         public DateOnly? OpenDate { get; set; } // Open Date
+
+        public DateOnly? ClosedDate { get; set; }
 
         public int DaysCovered { get; set; }
 

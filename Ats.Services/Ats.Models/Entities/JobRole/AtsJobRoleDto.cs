@@ -11,7 +11,7 @@ namespace Ats.Models.Entities.JobRole
     {
         public Guid? Id { get; set; }
 
-        public int? SequenceNo { get; set; } // Job Role No.
+        public string? SequenceNo { get; set; } // Job Role No.
 
         public string? JobName { get; set; } // Job Title
 
