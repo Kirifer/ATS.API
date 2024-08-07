@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using ATS.Models.Enums;
+
 namespace Ats.Models.Entities.JobCandidate
 {
     public class AtsJobCandidateCreateDto
@@ -46,7 +48,7 @@ namespace Ats.Models.Entities.JobCandidate
 
         public DateOnly BackgroundVerification { get; set; } // Background Verification
 
-        public string ApplicationStatus { get; set; } // Status (Application status)
+        public ApplicationStatus ApplicationStatus { get; set; } // Status (Application status)
 
         public int FinalSalary { get; set; } // Final Basic Salary
 

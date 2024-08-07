@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Ats.Core.Api\Ats.Core\Ats.Core.csproj" />
+    <ProjectReference Include="..\ATS.Models\Ats.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
