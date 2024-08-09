@@ -48,5 +48,12 @@ namespace Ats.Datalayer.Implementation
                 .Include(c => c.JobCandidateAttachments)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
+
+        public async Task<List<JobCandidate>> GetJobCandidatesAsync()
+        {
+            return await Context.JobCandidates
+                .Include(c => c.JobCandidateAttachments)
+                .ToListAsync();
+        }
     }
 }
