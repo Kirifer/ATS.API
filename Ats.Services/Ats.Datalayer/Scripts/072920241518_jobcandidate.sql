@@ -24,7 +24,7 @@ begin
     client_final_interview_schedule date not null, -- Client/Final Interview Schedule
     background_verification date not null, -- Background Verification
 
-    application_status text not null, -- Status (Application status)
+    application_status int not null, -- Status (Application status)
     final_salary int not null, -- Final Basic Salary
     allowance int not null, -- Allowances
     honorarium text not null, -- Honorarium (Basic)

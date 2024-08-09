@@ -1,4 +1,6 @@
 ﻿using Ats.Shared.Models;
+using ATS.Models.Enums;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +51,7 @@ namespace Ats.Models.Entities.JobCandidate
 
         public DateOnly? BackgroundVerification { get; set; } // Background Verification
 
-        public string? ApplicationStatus { get; set; } // Status (Application status)
+        public ApplicationStatus? ApplicationStatus { get; set; } // Status (Application status)
 
         public int? FinalSalary { get; set; } // Final Basic Salary
 
