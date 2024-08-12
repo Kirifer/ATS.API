@@ -31,5 +31,7 @@ namespace Ats.Models.Entities.JobRole
         public string ShiftSched { get; set; }
 
         public string JobStatus { get; set; }
+
+        public DateOnly? ClosedDate { get; set; }
     }
 }

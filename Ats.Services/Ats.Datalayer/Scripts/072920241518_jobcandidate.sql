@@ -7,8 +7,8 @@ begin
     candidate_name text not null, -- Name
     job_role_id text not null, -- Job Role Number
     job_name text not null, -- Job Title (PUBLIC)
-    source_tool text not null, -- Sourcing Tool 
-    assigned_hr text not null, -- HR In-Charge
+    source_tool int not null, -- Sourcing Tool 
+    assigned_hr int not null, -- HR In-Charge
     candidate_cv text not null, -- Updated CV (file path or URL) (PUBLIC)
     candidate_email text not null, -- Email Address (PUBLIC)
     candidate_contact text not null, -- Contact Number (PUBLIC)
@@ -16,7 +16,7 @@ begin
     salary_negotiable text not null, -- Negotiable (Yes/No) (PUBLIC)
     min_salary int not null, -- Minimum Negotiated Salary (PUBLIC)
     max_salary int not null, -- Maximum Negotiated Salary
-    notice_duration text not null, -- Availability (notice period) (PUBLIC)
+    notice_duration int not null, -- Availability (notice period) (PUBLIC)
 
     date_applied date not null, -- Date Applied
     initial_interview_schedule date not null, -- Initial Interview Schedule (PUBLIC)

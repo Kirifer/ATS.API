@@ -16,7 +16,7 @@
       job_status text not null, -- Status
       --job_candidate_no text not null --Candidate (JC#)
       open_date date not null default current_date, -- Date Requested
-      closed_date date not null, -- Closed Date
+      closed_date date null, -- Closed Date
       days_covered int not null,  -- Using int to store the number of days (Days Covered)
       aging text not null default '',  -- Default value for aging (Aging)
    
@@ -32,12 +32,20 @@ declare
     total_days int;
     remaining_days int;
 begin
-    total_days := new.closed_date - new.open_date;
+    -- Calculate the total days based on whether closed_date is null
+    if new.closed_date is not null then
+        total_days := new.closed_date - new.open_date;
+    else
+        total_days := current_date - new.open_date;
+    end if;
+
+    -- Calculate months and remaining days
     months_diff := total_days / 31;  -- Approximate number of months
     remaining_days := total_days % 31;  -- Remaining days after converting to months
+
+    -- Update the days_covered and aging fields
     new.days_covered := total_days;
     new.aging := months_diff || ' months & ' || remaining_days || ' days';
-
 
     return new;
 end;

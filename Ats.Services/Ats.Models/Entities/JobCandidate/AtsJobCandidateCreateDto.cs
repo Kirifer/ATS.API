@@ -18,9 +18,9 @@ namespace Ats.Models.Entities.JobCandidate
 
         public string JobName { get; set; } // Job Title (PUBLIC)
 
-        public string SourceTool { get; set; } // Sourcing Tool
+        public SourcingToolType SourceTool { get; set; } // Sourcing Tool
 
-        public string AssignedHr { get; set; } // HR In-Charge
+        public AssignedHrType AssignedHr { get; set; } // HR In-Charge
 
         public string CandidateEmail { get; set; } // Email Address (PUBLIC)
 
@@ -36,7 +36,7 @@ namespace Ats.Models.Entities.JobCandidate
 
         public int MaxSalary { get; set; } // Maximum Negotiated Salary
 
-        public string NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
+        public NoticeDurationType NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
 
         public DateOnly DateApplied { get; set; } // Date Applied
 

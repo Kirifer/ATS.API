@@ -11,4 +11,3 @@ namespace ATS.Models.Enums
         FourWeeksOrMoreNotice
     }
 }
-

@@ -34,6 +34,6 @@ namespace Ats.Models.Entities.JobRole
 
         public string JobStatus { get; set; } // Status
 
-        public DateOnly? ClosedDate { get; set; } // Closed Date
+        // public DateOnly? ClosedDate { get; set; } // Closed Date
     }
 }

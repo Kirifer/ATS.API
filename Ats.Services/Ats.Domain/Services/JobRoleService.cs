@@ -109,6 +109,7 @@ namespace Ats.Domain.Services
                 updateRef.JobLocation = role.JobLocation;
                 updateRef.ShiftSched = role.ShiftSched;
                 updateRef.JobStatus = role.JobStatus;
+                updateRef.ClosedDate = role.ClosedDate;
 
 
                 var result = await _jobRoleRepository.UpdateAsync(updateRef);
