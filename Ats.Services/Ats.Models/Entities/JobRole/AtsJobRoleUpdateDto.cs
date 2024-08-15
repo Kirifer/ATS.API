@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ats.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,25 +13,25 @@ namespace Ats.Models.Entities.JobRole
 
         public string ClientShortcodes { get; set; }
 
-        public string HiringManager { get; set; }
+        public HiringManager HiringManager { get; set; }
 
         public string SalesManager { get; set; }
 
-        public string HiringType { get; set; }
+        public HiringType HiringType { get; set; }
 
         public string JobDescription { get; set; }
 
-        public string RoleLevel { get; set; }
+        public RoleLevel RoleLevel { get; set; }
 
         public int MinSalary { get; set; }
 
         public int MaxSalary { get; set; }
 
-        public string JobLocation { get; set; }
+        public JobLocation JobLocation { get; set; }
 
-        public string ShiftSched { get; set; }
+        public ShiftSchedule ShiftSched { get; set; }
 
-        public string JobStatus { get; set; }
+        public JobStatus JobStatus { get; set; }
 
         public DateOnly? ClosedDate { get; set; }
     }

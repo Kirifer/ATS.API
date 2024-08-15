@@ -40,11 +40,11 @@ namespace Ats.Models.Entities.JobCandidate
 
         public DateOnly InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
 
-        public DateOnly TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
+        public DateOnly? TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
 
-        public DateOnly ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
+        public DateOnly? ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
 
-        public DateOnly BackgroundVerification { get; set; } // Background Verification
+        public DateOnly? BackgroundVerification { get; set; } // Background Verification
 
         public ApplicationStatus ApplicationStatus { get; set; } // Status (Application status)
 
@@ -52,12 +52,12 @@ namespace Ats.Models.Entities.JobCandidate
 
         public int Allowance { get; set; } // Allowances
 
-        public string Honorarium { get; set; } // Honorarium (Basic)
+        public string? Honorarium { get; set; } // Honorarium (Basic)
 
-        public DateOnly JobOffer { get; set; } // Job Offer (Date)
+        public DateOnly? JobOffer { get; set; } // Job Offer (Date)
 
-        public DateOnly CandidateContract { get; set; } // Job Contract (Date)
+        public DateOnly? CandidateContract { get; set; } // Job Contract (Date)
 
-        public string Remarks { get; set; } // Remarks
+        public string? Remarks { get; set; } // Remarks
     }
 }

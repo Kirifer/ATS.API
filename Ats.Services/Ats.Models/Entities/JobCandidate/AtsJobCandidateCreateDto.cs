@@ -18,9 +18,9 @@ namespace Ats.Models.Entities.JobCandidate
 
         public string JobName { get; set; } // Job Title (PUBLIC)
 
-        public SourcingToolType SourceTool { get; set; } // Sourcing Tool
+        public SourcingToolType? SourceTool { get; set; } // Sourcing Tool
 
-        public AssignedHrType AssignedHr { get; set; } // HR In-Charge
+        public AssignedHrType? AssignedHr { get; set; } // HR In-Charge
 
         public string CandidateEmail { get; set; } // Email Address (PUBLIC)
 
@@ -34,31 +34,31 @@ namespace Ats.Models.Entities.JobCandidate
 
         public int MinSalary { get; set; } // Minimum Negotiated Salary (PUBLIC)
 
-        public int MaxSalary { get; set; } // Maximum Negotiated Salary
+        public int? MaxSalary { get; set; } // Maximum Negotiated Salary
 
         public NoticeDurationType NoticeDuration { get; set; } // Availability (notice period) (PUBLIC)
 
-        public DateOnly DateApplied { get; set; } // Date Applied
+        public DateOnly? DateApplied { get; set; } // Date Applied
 
         public DateOnly InitialInterviewSchedule { get; set; } // Initial Interview Schedule (PUBLIC)
 
-        public DateOnly TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
+        public DateOnly? TechnicalInterviewSchedule { get; set; } // Technical Interview Schedule
 
-        public DateOnly ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
+        public DateOnly? ClientFinalInterviewSchedule { get; set; } // Client/Final Interview Schedule
 
-        public DateOnly BackgroundVerification { get; set; } // Background Verification
+        public DateOnly? BackgroundVerification { get; set; } // Background Verification
 
-        public ApplicationStatus ApplicationStatus { get; set; } // Status (Application status)
+        public ApplicationStatus? ApplicationStatus { get; set; } // Status (Application status)
 
-        public int FinalSalary { get; set; } // Final Basic Salary
+        public int? FinalSalary { get; set; } // Final Basic Salary
 
-        public int Allowance { get; set; } // Allowances
+        public int? Allowance { get; set; } // Allowances
 
         public string Honorarium { get; set; } // Honorarium (Basic)
 
-        public DateOnly JobOffer { get; set; } // Job Offer (Date)
+        public DateOnly? JobOffer { get; set; } // Job Offer (Date)
 
-        public DateOnly CandidateContract { get; set; } // Job Contract (Date)
+        public DateOnly? CandidateContract { get; set; } // Job Contract (Date)
 
         public string Remarks { get; set; } // Remarks
 

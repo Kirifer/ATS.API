@@ -4,16 +4,16 @@
       sequence_no text not null, -- Job Role No.
       job_name text not null, -- Job Title
       client_shortcodes text not null, -- Client Shortcodes
-      hiring_manager text not null, -- Hiring Manager
+      hiring_manager int not null, -- Hiring Manager
       sales_manager text not null, -- Sales Manager
-      hiring_type text not null, -- Type of Hiring
+      hiring_type int not null, -- Type of Hiring
       job_description text not null, -- Job Description
-      role_level text not null, -- Role Level
+      role_level int not null, -- Role Level
       min_salary int not null, -- Minimum Salary
       max_salary int not null, -- Maximum Salary
-      job_location text not null, -- Location
-      shift_sched text not null, -- Schedule
-      job_status text not null, -- Status
+      job_location int not null, -- Location
+      shift_sched int not null, -- Schedule
+      job_status int not null, -- Status
       --job_candidate_no text not null --Candidate (JC#)
       open_date date not null default current_date, -- Date Requested
       closed_date date null, -- Closed Date
