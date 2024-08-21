@@ -1,10 +1,23 @@
+using System.Reflection.Metadata;
+using System.Reflection;
+using System.Text;
+
 using Ats.Api.Configurations;
 using Ats.Core.Abstraction;
 using Ats.Core.Api;
 using Ats.Core.ApiConfig;
+using Ats.Core.Authentication;
 using Ats.Core.Config;
 using Ats.Datalayer.Implementation;
 using Ats.Datalayer.Interface;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+using Microsoft.IdentityModel.Tokens;
+
+using Microsoft.OpenApi.Models;
+using Ats.Core.Config.Authentication;
+using Ats.Shared.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +51,48 @@ builder.Services.AddScoped<IJobCandidateAttachmentRepository, JobCandidateAttach
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc(GlobalConstants.DocumentVersion, new OpenApiInfo
+    {
+        Version = GlobalConstants.DocumentVersion,
+        Title = GlobalConstants.DocumentTitle,
+        Description = GlobalConstants.DocumentDescription
+    });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        options.IncludeXmlComments(xmlPath);
+    }
+});
+
+// Authentication Setup
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUserContext, UserContext>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        RequireSignedTokens = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretsConfig.JwtConfig!.Key)),
+
+        ValidateLifetime = true,
+        RequireExpirationTime = true,
+
+        ValidateIssuer = true,
+        ValidIssuer = secretsConfig.JwtConfig.Issuer,
+
+        ValidateAudience = true,
+        ValidAudience = secretsConfig.JwtConfig.Audience,
+    };
+});
 
 var app = builder.Build();
 
@@ -56,12 +110,14 @@ app.UseCors(policy => policy
 .AllowAnyMethod()
 .AllowAnyOrigin());
 
-
-
-
 app.UseAtsDatabase();
 app.UseAuthorization();
 app.UseRouting();
 app.MapControllers();
+
+// for authentication
+app.UseMiddleware<HttpOnlyMiddleware>(secretsConfig.JwtConfig!.CookieName);
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

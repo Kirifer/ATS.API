@@ -1,5 +1,7 @@
 ﻿using System.Security.Claims;
 
+using Ats.Shared.Enums;
+
 using Microsoft.AspNetCore.Http;
 
 namespace Ats.Core.Authentication
@@ -7,19 +9,22 @@ namespace Ats.Core.Authentication
     public class UserContext : IUserContext
     {
         public Guid UserId { get; set; }
-        public Guid AuthId { get; set; }
-
+        public string FullName { get; set; }
         public string Email { get; set; }
-        public IEnumerable<string> Roles { get; set; }
-        public IEnumerable<string> Permissions { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool IsApplicant { get; set; }
 
         public UserContext(IHttpContextAccessor httpContextAccessor)
         {
             SetUserIdentity(httpContextAccessor);
         }
 
-        public bool HasPermission(params string[] requiredPermissions)
-            => Permissions?.Intersect(requiredPermissions).Any() ?? false;
+        public bool HasAccess(AccessFilterType type) => type switch
+        {
+            AccessFilterType.Admin => IsAdmin,
+            AccessFilterType.Applicant => IsApplicant,
+            _ => false
+        };
 
         private void SetUserIdentity(IHttpContextAccessor httpContextAccessor)
         {
@@ -27,29 +32,31 @@ namespace Ats.Core.Authentication
 
             var claimsIdentity = (ClaimsIdentity)httpContextAccessor.HttpContext.User.Identity!;
 
-            Email = GetClaimValue(claimsIdentity, AuthClaims.Email);
+            Email = GetClaimValue(claimsIdentity, ClaimTypes.Email);
 
-            var userIdString = GetClaimValue(claimsIdentity, AuthClaims.UserId);
+            var userIdString = GetClaimValue(claimsIdentity, ClaimTypes.NameIdentifier);
             if (!string.IsNullOrWhiteSpace(userIdString))
             {
                 UserId = new Guid(userIdString);
             }
 
-            var authIdString = GetClaimValue(claimsIdentity, AuthClaims.AuthId);
-            if (!string.IsNullOrWhiteSpace(authIdString))
+            var fullNameString = GetClaimValue(claimsIdentity, AuthClaims.FullName);
+            if (!string.IsNullOrWhiteSpace(fullNameString))
             {
-                AuthId = new Guid(authIdString);
+                FullName = fullNameString;
             }
 
-            claimsIdentity.TryGetClaimsValue(AuthClaims.Role, out var roleClaims);
-            Roles = roleClaims ?? new List<string>();
-            Permissions = Roles
-                .Where(role => !string.IsNullOrWhiteSpace(role))
-                .SelectMany(role => RolePermissionFactory
-                    .InitializeFactories()
-                    .GetFactory(role)
-                    .GetPermissions())
-                .Distinct();
+            var isAdmin = GetClaimValue(claimsIdentity, AuthClaims.Admin);
+            if (!string.IsNullOrWhiteSpace(isAdmin))
+            {
+                IsAdmin = bool.TryParse(isAdmin, out var isAdminValue) ? isAdminValue : false;
+            }
+
+            var isApplicant = GetClaimValue(claimsIdentity, AuthClaims.Applicant);
+            if (!string.IsNullOrWhiteSpace(isApplicant))
+            {
+                IsApplicant = bool.TryParse(isApplicant, out var isApplicantValue) ? isApplicantValue : false;
+            }
         }
 
         private string GetClaimValue(ClaimsIdentity claimsIdentity, string claimType)

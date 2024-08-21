@@ -16,6 +16,7 @@
     <EmbeddedResource Include="Scripts\072920241518_jobcandidate.sql" />
     <EmbeddedResource Include="Scripts\070920241251_user.sql" />
     <EmbeddedResource Include="Scripts\080620241223_jobcandidate-attachments.sql" />
+    <EmbeddedResource Include="Scripts\082020241548_add-is-admin and-is-applicant-on-user.sql" />
   </ItemGroup>
 
 </Project>
