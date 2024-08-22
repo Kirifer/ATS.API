@@ -69,6 +69,7 @@ namespace Ats.Domain.Services
             try
             {
                 var createRef = Mapper.Map<User>(user);
+                createRef.CreatedOn = DateTime.UtcNow;
 
                 var result = await _userRepository.AddAsync(createRef);
 
@@ -92,6 +93,7 @@ namespace Ats.Domain.Services
                 updateRef.FirstName = user.FirstName;
                 updateRef.LastName = user.LastName;
                 updateRef.Password = user.Password;
+                updateRef.UpdatedOn = DateTime.UtcNow;
 
                 var result = await _userRepository.UpdateAsync(updateRef);
 

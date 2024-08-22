@@ -34,7 +34,7 @@ namespace Ats.Api.Controllers
             {
                 var cookieOptions = new CookieOptions
                 {
-                    Expires = DateTime.Now.AddDays(1),
+                    Expires = DateTime.Now.AddDays(serviceConfig.JwtConfig!.ExpiryDays),
                     HttpOnly = true,
                     Domain = uriHost.GetDomainName(),
                     Secure = true,

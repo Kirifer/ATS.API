@@ -6,6 +6,8 @@ namespace Ats.Datalayer.Interface
     {
         Task<User?> GetByEmailAsync(string email);
 
-        Task<User?> GetByUserNamePasswordAsync(string? username, string? password);
+        Task<User?> GetByUsernameAsync(string username);
+
+        Task<User?> GetByUsernamePasswordAsync(string? username, string? password);
     }
 }

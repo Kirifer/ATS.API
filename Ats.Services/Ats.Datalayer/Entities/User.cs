@@ -1,9 +1,8 @@
 ﻿using Ats.Core.Database.Abstraction;
-using Ats.Datalayer.Interface;
 
 namespace Ats.Datalayer.Entities
 {
-    public class User : DbEntityIdBase
+    public class User : DbEntityFullBase
     {
         public required string Username { get; set; }
         public required string Password { get; set; }

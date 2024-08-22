@@ -76,7 +76,7 @@ namespace Ats.Domain.Services
         {
             try
             {
-                var user = await _userRepository.GetByUserNamePasswordAsync(loginRequest.UserName, loginRequest.Password);
+                var user = await _userRepository.GetByUsernamePasswordAsync(loginRequest.Username, loginRequest.Password);
                 if (user == null)
                 {
                     return Response<AuthLoginDto>.Error(HttpStatusCode.Unauthorized,
@@ -107,12 +107,75 @@ namespace Ats.Domain.Services
             return Response<AuthIdentityResultDto>.Success(new AuthIdentityResultDto { Succeeded = true });
         }
 
+        public async Task<Response<AuthRegisterResponseDto>> RegisterAsync(AuthRegisterRequestDto registerRequest)
+        {
+            try
+            {
+                if (registerRequest == null)
+                    return Response<AuthRegisterResponseDto>.Error(HttpStatusCode.BadRequest,
+                        new ErrorDto(ErrorCode.ValidationError, "Invalid request."));
+
+                if (string.IsNullOrWhiteSpace(registerRequest.FirstName) ||
+                    string.IsNullOrWhiteSpace(registerRequest.LastName) ||
+                    string.IsNullOrWhiteSpace(registerRequest.Email) ||
+                    string.IsNullOrWhiteSpace(registerRequest.Username) ||
+                    string.IsNullOrWhiteSpace(registerRequest.Password))
+                    return Response<AuthRegisterResponseDto>.Error(HttpStatusCode.BadRequest,
+                        new ErrorDto(ErrorCode.ValidationError, "Invalid request."));
+
+                // Check if email is already used
+                var existingUserByEmail = await _userRepository.GetByEmailAsync(registerRequest.Email);
+                if (existingUserByEmail != null)
+                {
+                    return Response<AuthRegisterResponseDto>.Error(HttpStatusCode.BadRequest,
+                        new ErrorDto(ErrorCode.DuplicateRecord, "Email already exists."));
+                }
+
+                // Check if username is already used
+                var existingUserByUsername = await _userRepository.GetByUsernameAsync(registerRequest.Username);
+                if (existingUserByUsername != null)
+                {
+                    return Response<AuthRegisterResponseDto>.Error(HttpStatusCode.BadRequest,
+                        new ErrorDto(ErrorCode.DuplicateRecord, "Username already exists."));
+                }
+
+                var userRecord = new User
+                {
+                    FirstName = registerRequest.FirstName,
+                    LastName = registerRequest.LastName,
+                    Email = registerRequest.Email,
+                    Username = registerRequest.Username,
+                    Password = registerRequest.Password,
+                    IsAdmin = false,
+                    IsApplicant = true,
+                    CreatedOn = DateTime.UtcNow,
+                };
+
+                var user = await _userRepository.AddAsync(userRecord);
+
+                var response = new AuthRegisterResponseDto
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Username = user.Username,
+                };
+
+                return Response<AuthRegisterResponseDto>.Success(response);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while registering user.");
+                return Response<AuthRegisterResponseDto>.Exception(ex);
+            }
+        }
+
         private object GenerateToken(User user)
         {
             // Generate JwtSecurityToken
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_microServiceConfig.JwtConfig!.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(1); // 1 day
+            var expires = DateTime.Now.AddDays(_microServiceConfig.JwtConfig!.ExpiryDays);
 
             var generatedToken = new JwtSecurityToken(
                 issuer: _microServiceConfig.JwtConfig.Issuer,

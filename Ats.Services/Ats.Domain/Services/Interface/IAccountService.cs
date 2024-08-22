@@ -11,5 +11,7 @@ namespace Ats.Domain.Services.Interface
         Task<Response<AuthLoginDto>> LoginAsync(AuthLoginRequestDto loginRequest);
 
         Task<Response<AuthIdentityResultDto>> LogoutAsync();
+
+        Task<Response<AuthRegisterResponseDto>> RegisterAsync(AuthRegisterRequestDto registerRequest);
     }
 }

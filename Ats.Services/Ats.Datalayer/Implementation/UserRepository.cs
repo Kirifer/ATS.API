@@ -18,7 +18,15 @@ namespace Ats.Datalayer.Implementation
             return user;
         }
 
-        public async Task<User?> GetByUserNamePasswordAsync(string? username, string? password)
+        public async Task<User?> GetByUsernameAsync(string username)
+        {
+            var user = await Context.Users.AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Username == username);
+
+            return user;
+        }
+
+        public async Task<User?> GetByUsernamePasswordAsync(string? username, string? password)
         {
             var user = await Context.Users.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Username == username && x.Password == password);
