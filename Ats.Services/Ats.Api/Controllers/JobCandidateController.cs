@@ -66,12 +66,18 @@ namespace Ats.Api.Controllers
         // In case you want to download the attachment seperately and lessen the load on the main API (job candidate)
         [HttpGet]
         [Route("jobcandidate/{id}/attachments/{attachmentId}")]
-        [ProducesResponseType(typeof(Response<AtsJobCandidateAttachmentDto>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetJobCandidateAttachmentsAsync(Guid id, Guid attachmentId)
         {
-            var response = await jobCandidateAttachmentService.GetJobCandidateAttachmentsAsync(attachmentId);
+            var response = await jobCandidateAttachmentService.GetJobCandidateAttachmentAsync(attachmentId);
+            if (response.Succeeded)
+            {
+                var attachmentDto = response.Data;
+                var fileBytes = Convert.FromBase64String(attachmentDto.Content);
+                return File(fileBytes, "application/octet-stream", attachmentDto.FileName);
+            }
             return StatusCode((int)response.Code, response);
         }
+
 
         [HttpDelete]
         [Route("jobcandidate/{id}/attachments/{attachmentId}")]
