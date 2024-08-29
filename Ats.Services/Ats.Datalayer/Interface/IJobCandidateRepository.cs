@@ -12,5 +12,7 @@ namespace Ats.Datalayer.Interface
         Task<string> GetLatestSequenceNo();
 
         Task<JobCandidate?> GetJobCandidateDetailsAsync(Guid id);
+
+        Task<List<JobCandidate>> GetJobCandidatesAsync();
     }
 }

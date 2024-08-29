@@ -33,7 +33,7 @@ namespace Ats.Domain.Services
         {
             try
             {
-                var result = await _jobRoleRepository.GetAllAsync(role => true);
+                var result = await _jobRoleRepository.GetAllJobRolesAsync();
 
                 var roleDtoList = Mapper.Map<List<AtsJobRoleDto>>(result);
 

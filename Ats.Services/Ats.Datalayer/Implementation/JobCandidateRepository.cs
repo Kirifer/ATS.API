@@ -44,14 +44,15 @@ namespace Ats.Datalayer.Implementation
 
         public async Task<JobCandidate?> GetJobCandidateDetailsAsync(Guid id)
         {
-            return await Context.JobCandidates
+            return await Context.JobCandidates.AsNoTracking()
                 .Include(c => c.JobCandidateAttachments)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<List<JobCandidate>> GetJobCandidatesAsync()
         {
-            return await Context.JobCandidates
+            return await Context.JobCandidates.AsNoTracking()
+                .Include(c => c.JobRole)
                 .Include(c => c.JobCandidateAttachments)
                 .ToListAsync();
         }

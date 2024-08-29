@@ -44,6 +44,11 @@ namespace Ats.Datalayer.Implementation
             return $"JR-{nextSequenceNo:D5}"; // Format as "JR-00001", "JR-00002", etc.
         }
 
-
+        public async Task<List<JobRole>> GetAllJobRolesAsync()
+        {
+            return await Context.JobRoles.AsNoTracking()
+                .Include(r => r.Candidates)
+                .ToListAsync();
+        }
     }
 }

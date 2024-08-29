@@ -45,5 +45,7 @@ namespace Ats.Datalayer.Entities
         public int DaysCovered { get; set; }
 
         public string Aging { get; set; }
+
+        public virtual List<JobCandidate> Candidates { get; set; }
     }
 }

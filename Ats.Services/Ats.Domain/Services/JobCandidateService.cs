@@ -35,7 +35,7 @@ namespace Ats.Domain.Services
         {
             try
             {
-                var result = await _jobCandidateRepository.GetAllAsync(candidate => true);
+                var result = await _jobCandidateRepository.GetJobCandidatesAsync();
 
                 var candidateDtoList = Mapper.Map<List<AtsJobCandidateDto>>(result);
 

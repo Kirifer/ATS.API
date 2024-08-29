@@ -20,6 +20,8 @@ namespace Ats.Datalayer.Entities
 
         public string JobRoleId { get; set; } // Job Role Number
 
+        public virtual JobRole JobRole { get; set; }
+
         public string JobName { get; set; } // Job Title (PUBLIC)
 
         public SourcingToolType SourceTool { get; set; } // Sourcing Tool
