@@ -32,7 +32,12 @@ namespace Ats.Api.Controllers
             var uriHost = new Uri(Request.GetAbsoluteUrl());
             var cookieOptions = new CookieOptions
             {
-                Domain = uriHost.GetDomainName()
+                Domain = uriHost.GetDomainName(),
+/*
+                Ensure these settings match exactly with the login controller*/
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None // Disable for localhost
             };
 
             Response.Cookies.Delete(config.JwtConfig!.CookieName, cookieOptions);

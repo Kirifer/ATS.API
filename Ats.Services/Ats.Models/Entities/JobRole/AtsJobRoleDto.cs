@@ -1,4 +1,5 @@
-﻿using Ats.Models.Enums;
+﻿using Ats.Models.Entities.JobCandidate;
+using Ats.Models.Enums;
 using Ats.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -45,5 +46,7 @@ namespace Ats.Models.Entities.JobRole
         public int? DaysCovered { get; set; } // Using int to store the number of days (Days Covered)
 
         public string? Aging { get; set; } // Default value for aging (Aging)
+
+        public List<AtsJobCandidateDto>? Candidates { get; set; }
     }
 }

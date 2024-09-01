@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Ats.Core.Config.Authentication;
 using Ats.Shared.Constants;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -106,18 +107,23 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(policy => policy
+.WithOrigins("http://localhost:4200")
+/*If you have other environments(like staging or production), make sure to include their origins as well:*/
+/*.WithOrigins("http:// localhost:4200", "https:// your-staging-domain.com", "https:// your-production-domain.com")*/
 .AllowAnyHeader()
 .AllowAnyMethod()
-.AllowAnyOrigin());
+/*.AllowAnyOrigin()*/
+.AllowCredentials()); // Allow credentials (cookies, etc.)
 
 app.UseAtsDatabase();
-app.UseAuthorization();
 app.UseRouting();
-app.MapControllers();
+
 
 // for authentication
 app.UseMiddleware<HttpOnlyMiddleware>(secretsConfig.JwtConfig!.CookieName);
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
