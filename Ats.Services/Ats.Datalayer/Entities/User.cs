@@ -11,7 +11,6 @@ namespace Ats.Datalayer.Entities
         public required string Email { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsApplicant { get; set; }
-
         public string FullName => $"{FirstName} {LastName}";
     }
 }

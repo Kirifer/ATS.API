@@ -90,15 +90,16 @@ namespace Ats.Domain.Services
             {
                 var updateRef = await _userRepository.GetAsync(id);
 
+                // Update fields
                 updateRef.FirstName = user.FirstName;
                 updateRef.LastName = user.LastName;
                 updateRef.Password = user.Password;
                 updateRef.UpdatedOn = DateTime.UtcNow;
 
+                // Save changes
                 var result = await _userRepository.UpdateAsync(updateRef);
 
                 var userDto = Mapper.Map<AtsUserDto>(result);
-
                 return Response<AtsUserDto>.Success(userDto);
             }
             catch (Exception ex)
@@ -107,6 +108,7 @@ namespace Ats.Domain.Services
                 return Response<AtsUserDto>.Exception(ex);
             }
         }
+
 
         public async Task<Response<AtsUserDto>> DeleteUserAsync(Guid id)
         {
