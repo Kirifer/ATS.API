@@ -7,6 +7,7 @@ using System.Net;
 
 namespace Ats.Api.Controllers
 {
+/*    [Authorize()]*/
     [ApiController]
     [ProducesResponseType(typeof(Response<>), (int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType(typeof(Response<>), (int)HttpStatusCode.Forbidden)]
