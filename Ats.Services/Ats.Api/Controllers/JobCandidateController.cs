@@ -2,6 +2,7 @@
 using Ats.Domain.Services;
 using Ats.Domain.Services.Interface;
 using Ats.Models.Entities.JobCandidate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -74,9 +75,34 @@ namespace Ats.Api.Controllers
             {
                 var attachmentDto = response.Data;
                 var fileBytes = Convert.FromBase64String(attachmentDto.Content);
-                return File(fileBytes, "application/octet-stream", attachmentDto.FileName);
+                var mimeType = GetMimeType(attachmentDto.FileName);
+
+                // Set Content-Disposition to inline for viewable files
+                var contentDisposition = mimeType.StartsWith("application/pdf") || mimeType.StartsWith("image/")
+                    ? "inline"
+                    : "attachment";
+
+                Response.Headers.Add("Content-Disposition", $"{contentDisposition}; filename={attachmentDto.FileName}");
+                return File(fileBytes, mimeType);
             }
             return StatusCode((int)response.Code, response);
+        }
+
+        private string GetMimeType(string fileName)
+        {
+            var extension = Path.GetExtension(fileName).ToLowerInvariant();
+            return extension switch
+            {
+                ".pdf" => "application/pdf",
+                ".jpg" => "image/jpeg",
+                ".jpeg" => "image/jpeg",
+                ".png" => "image/png",
+                ".gif" => "image/gif",
+                ".txt" => "text/plain",
+                ".html" => "text/html",
+                ".csv" => "text/csv",
+                _ => "application/octet-stream",
+            };
         }
 
 

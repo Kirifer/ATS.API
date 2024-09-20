@@ -1,11 +1,13 @@
 ﻿using Ats.Core.Filtering;
 using Ats.Domain.Services.Interface;
 using Ats.Models.Entities.JobRole;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace Ats.Api.Controllers
 {
+/*    [Authorize()]*/
     [ApiController]
     [ProducesResponseType(typeof(Response<>), (int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType(typeof(Response<>), (int)HttpStatusCode.Forbidden)]

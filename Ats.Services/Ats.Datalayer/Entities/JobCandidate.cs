@@ -70,5 +70,7 @@ namespace Ats.Datalayer.Entities
 
         // Navigation Properties
         public virtual ICollection<JobCandidateAttachment> JobCandidateAttachments { get; set; }
+
+        public virtual User User { get; set; }
     }
 }
