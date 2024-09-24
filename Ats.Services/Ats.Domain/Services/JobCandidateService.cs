@@ -180,5 +180,22 @@ namespace Ats.Domain.Services
             }
         }
 
+        public async Task<Response<AtsJobCandidateDto>> GetJobCandidateByEmailAsync(string email)
+        {
+            try
+            {
+                var result = await _jobCandidateRepository.GetJobCandidateByEmailAsync(email);
+                var candidateDto = Mapper.Map<AtsJobCandidateDto>(result);
+
+                return Response<AtsJobCandidateDto>.Success(candidateDto);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while fetching candidate by email.");
+                return Response<AtsJobCandidateDto>.Exception(ex);
+            }
+        }
+
+
     }
 }

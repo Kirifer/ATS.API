@@ -46,6 +46,7 @@ namespace Ats.Datalayer.Implementation
         {
             return await Context.JobCandidates.AsNoTracking()
                 .Include(c => c.JobCandidateAttachments)
+                .Include(c => c.User)  // Eager load the related User
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
@@ -53,8 +54,16 @@ namespace Ats.Datalayer.Implementation
         {
             return await Context.JobCandidates.AsNoTracking()
                 .Include(c => c.JobRole)
+                .Include(c => c.User)  // Eager load User as well
                 .Include(c => c.JobCandidateAttachments)
                 .ToListAsync();
+        }
+
+        public async Task<JobCandidate?> GetJobCandidateByEmailAsync(string email) 
+        {
+            return await Context.JobCandidates.AsNoTracking()
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(c => c.CandidateEmail == email);
         }
     }
 }

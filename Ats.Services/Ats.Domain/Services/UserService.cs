@@ -5,9 +5,11 @@ using Ats.Core.Abstraction;
 using Ats.Core.Filtering;
 using Ats.Datalayer;
 using Ats.Datalayer.Entities;
+using Ats.Datalayer.Implementation;
 using Ats.Datalayer.Interface;
 using Ats.Domain.Services.Interface;
 using Ats.Models;
+using Ats.Models.Entities.JobCandidate;
 using Ats.Shared.Enums;
 
 using AutoMapper;
@@ -20,15 +22,17 @@ namespace Ats.Domain.Services
     public class UserService: EntityService, IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IJobCandidateService _jobCandidateService;
 
         public UserService(
             IMapper mapper,
             ILogger<UserService> logger,
 
-            IUserRepository userRepository)
+            IUserRepository userRepository, IJobCandidateService jobCandidateService)
             : base(mapper, logger)
         {
             _userRepository = userRepository;
+            _jobCandidateService = jobCandidateService;
         }
 
         public async Task<Response<List<AtsUserDto>>> GetUsersAsync(AtsUserFilterDto filter)
@@ -128,5 +132,22 @@ namespace Ats.Domain.Services
                 return Response<AtsUserDto>.Exception(ex);
             }
         }
+
+        public async Task<Response<AtsUserDto>> GetUserWithJobCandidateAsync(string email)
+        {
+            try
+            {
+                var result = await _userRepository.GetUserWithJobCandidateAsync(email);
+                var userDto = Mapper.Map<AtsUserDto>(result);
+
+                return Response<AtsUserDto>.Success(userDto);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error occurred while fetching user with job candidate by email.");
+                return Response<AtsUserDto>.Exception(ex);
+            }
+        }
+
     }
 }

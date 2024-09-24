@@ -9,5 +9,7 @@ namespace Ats.Datalayer.Interface
         Task<User?> GetByUsernameAsync(string username);
 
         Task<User?> GetByUsernamePasswordAsync(string? username, string? password);
+
+        Task<User?> GetUserWithJobCandidateAsync(string email);
     }
 }

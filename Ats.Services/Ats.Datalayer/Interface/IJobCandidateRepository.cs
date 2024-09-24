@@ -14,5 +14,7 @@ namespace Ats.Datalayer.Interface
         Task<JobCandidate?> GetJobCandidateDetailsAsync(Guid id);
 
         Task<List<JobCandidate>> GetJobCandidatesAsync();
+
+        Task<JobCandidate?> GetJobCandidateByEmailAsync(string email);
     }
 }

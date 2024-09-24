@@ -33,5 +33,13 @@ namespace Ats.Datalayer.Implementation
 
             return user;
         }
+
+        public async Task<User?> GetUserWithJobCandidateAsync(string email)
+        {
+            return await Context.Users.AsNoTracking()
+                .Include(u => u.JobCandidates)
+                .FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+        }
+
     }
 }
