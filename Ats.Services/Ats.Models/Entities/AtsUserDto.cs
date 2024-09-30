@@ -1,4 +1,5 @@
 ﻿using Ats.Shared.Models;
+using Ats.Models.Entities.JobCandidate;
 
 namespace Ats.Models
 {
@@ -8,5 +9,6 @@ namespace Ats.Models
         public string? Email { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public virtual ICollection<AtsJobCandidateDto> JobCandidates { get; set; } = new List<AtsJobCandidateDto>();
     }
 }

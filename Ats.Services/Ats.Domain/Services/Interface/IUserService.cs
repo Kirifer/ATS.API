@@ -15,5 +15,7 @@ namespace Ats.Domain.Services.Interface
         Task<Response<AtsUserDto>> UpdateUserAsync(Guid id, AtsUserUpdateDto user);
 
         Task<Response<AtsUserDto>> DeleteUserAsync(Guid id);
+
+        Task<Response<AtsUserDto>> GetUserWithJobCandidateAsync(string email);
     }
 }

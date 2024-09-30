@@ -20,5 +20,7 @@ namespace Ats.Domain.Services.Interface
         Task<Response<AtsJobCandidateDto>> UpdateJobCandidateAsync(Guid id, AtsJobCandidateUpdateDto candidate);
 
         Task<Response<AtsJobCandidateDto>> DeleteJobCandidateAsync(Guid id);
+
+        Task<Response<AtsJobCandidateDto>> GetJobCandidateByEmailAsync(string email);
     }
 }

@@ -12,7 +12,7 @@ namespace Ats.Datalayer.Entities
         public bool IsAdmin { get; set; }
         public bool IsApplicant { get; set; }
         public string FullName => $"{FirstName} {LastName}";
-        public ICollection<JobCandidate> JobCandidates { get; set; }
+        public virtual ICollection<JobCandidate> JobCandidates { get; set; } = new List<JobCandidate>();
     }
 }
     

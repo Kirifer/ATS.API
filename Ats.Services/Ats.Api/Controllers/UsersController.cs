@@ -60,5 +60,14 @@ namespace Ats.Api.Controllers
             var response = await userService.DeleteUserAsync(id);
             return StatusCode((int)response.Code, response);
         }
+
+        [HttpGet]
+        [Route("users/email/{email}")]
+        [ProducesResponseType(typeof(Response<AtsUserDto>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetUserWithJobCandidateAsync(string email)
+        {
+            var response = await userService.GetUserWithJobCandidateAsync(email);
+            return StatusCode((int)response.Code, response);
+        }
     }
 }

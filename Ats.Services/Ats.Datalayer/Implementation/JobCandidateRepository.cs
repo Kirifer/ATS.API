@@ -63,7 +63,7 @@ namespace Ats.Datalayer.Implementation
         {
             return await Context.JobCandidates.AsNoTracking()
                 .Include(c => c.User)
-                .FirstOrDefaultAsync(c => c.CandidateEmail == email);
+                .FirstOrDefaultAsync(c => c.CandidateEmail.ToLower() == email.ToLower());
         }
     }
 }
